@@ -1,87 +1,124 @@
-# Sistema de Gestão de Ótica
+# Gestão Ótica - Sistema de Gestão para Óticas
 
-Sistema completo para gestão de óticas com funcionalidades de cadastro de clientes, vendas, controle de pagamentos e impressão de recibos.
+Sistema completo de gestão para óticas desenvolvido com React, Convex e TailwindCSS.
 
 ## Funcionalidades
 
-- **Autenticação**: Sistema de login seguro
-- **Gestão de Clientes**: Cadastro completo com prescrições oftálmicas
-- **Vendas**: Registro de vendas com controle de pagamentos
-- **Recibos**: Impressão de recibos com informações da loja e prescrição
-- **Dashboard**: Visão geral das vendas e estatísticas
-- **Perfil da Empresa**: Configuração dos dados da ótica
+- 📋 Cadastro e gestão de clientes
+- 👁️ Registro de prescrições oftálmicas
+- 💰 Sistema de vendas e faturamento
+- 📊 Dashboard com métricas
+- 🧾 Geração de recibos
+- 📱 Interface responsiva
+- 🔐 Sistema de autenticação
 
 ## Tecnologias
 
-### Web App
-- **Frontend**: React + TypeScript + Vite
-- **Backend**: Convex (banco de dados reativo)
-- **Estilização**: TailwindCSS
+- **Frontend**: React + TypeScript + TailwindCSS
+- **Backend**: Convex (Database + Functions)
 - **Autenticação**: Convex Auth
+- **Deploy**: Vercel (Frontend) + Convex Cloud (Backend)
 
-### Android App
-- **Linguagem**: Kotlin
-- **WebView**: Para exibir o app web
-- **Compatibilidade**: Android 7.0+ (API 24+)
+## Como Configurar
 
-## Instalação
+### 1. Configurar o Backend (Convex)
 
-### Web App
-
-1. Clone o repositório
-2. Instale as dependências:
+1. Crie uma conta em [Convex](https://convex.dev)
+2. Instale a CLI do Convex:
    ```bash
-   npm install
+   npm install -g convex
    ```
-3. Configure o Convex:
+3. Faça login:
+   ```bash
+   npx convex login
+   ```
+4. Inicialize o projeto:
    ```bash
    npx convex dev
    ```
-4. Inicie o servidor de desenvolvimento:
+5. Copie a URL do deployment que aparecerá no terminal
+
+### 2. Configurar Variáveis de Ambiente
+
+1. Copie o arquivo `.env.example` para `.env.local`:
    ```bash
-   npm run dev
+   cp .env.example .env.local
+   ```
+2. Edite o arquivo `.env.local` e adicione sua URL do Convex:
+   ```
+   VITE_CONVEX_URL=https://seu-deployment.convex.cloud
    ```
 
-### Android App
+### 3. Instalar Dependências e Executar
 
-1. Abra o Android Studio
-2. Importe o projeto da pasta `android/`
-3. Atualize a URL do app em `MainActivity.kt`:
-   ```kotlin
-   private val APP_URL = "https://sua-url-do-convex.com"
-   ```
-4. Execute o projeto no dispositivo ou emulador
+```bash
+npm install
+npm run dev
+```
+
+### 4. Deploy na Vercel
+
+1. Conecte seu repositório GitHub à Vercel
+2. Configure as variáveis de ambiente na Vercel:
+   - `VITE_CONVEX_URL`: URL do seu deployment Convex
+3. Deploy automático será feito a cada push
+
+### 5. Deploy do Backend
+
+Para fazer deploy do backend Convex em produção:
+
+```bash
+npx convex deploy
+```
 
 ## Estrutura do Projeto
 
 ```
-/
-├── src/                    # Código fonte React
 ├── convex/                 # Backend Convex
-├── android/                # App Android
-├── public/                 # Arquivos públicos
-└── README.md
+│   ├── schema.ts          # Schema do banco de dados
+│   ├── auth.ts            # Configuração de autenticação
+│   ├── clients.ts         # Funções de clientes
+│   ├── sales.ts           # Funções de vendas
+│   └── userProfiles.ts    # Funções de perfil
+├── src/
+│   ├── components/        # Componentes React
+│   ├── App.tsx           # Componente principal
+│   └── main.tsx          # Entry point
+├── android/              # App Android (WebView)
+└── public/               # Assets estáticos
 ```
 
-## Configuração do Recibo
+## Funcionalidades Principais
 
-O sistema gera recibos com:
-- Informações da loja (nome fantasia, CNPJ, telefone)
-- Dados do cliente e prescrição oftálmica
-- Itens vendidos (armação, lentes, acessórios)
-- Valores e forma de pagamento
-- Data prevista para entrega
-- Termos de garantia
+### Gestão de Clientes
+- Cadastro completo com dados pessoais
+- Registro de prescrições oftálmicas (OD/OE)
+- Histórico de compras por cliente
 
-## Desenvolvimento
+### Sistema de Vendas
+- Registro de vendas com múltiplos itens
+- Controle de armações e lentes separadamente
+- Gestão de pagamentos (à vista/parcelado)
+- Status de pagamento (pendente/parcial/pago)
+- Geração de recibos para impressão
 
-Para contribuir com o projeto:
+### Dashboard
+- Métricas de vendas e faturamento
+- Resumo de clientes cadastrados
+- Controle de valores pendentes
 
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Abra um Pull Request
+## App Android
+
+O projeto inclui um app Android nativo que funciona como um WebView da aplicação web. Para usar:
+
+1. Abra o projeto Android no Android Studio
+2. Edite `MainActivity.kt` e substitua `APP_URL` pela URL do seu app
+3. Compile e instale no dispositivo
+
+## Suporte
+
+Para dúvidas ou problemas, abra uma issue no repositório.
 
 ## Licença
 
-Este projeto está sob a licença MIT.
+MIT License
