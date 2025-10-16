@@ -60,8 +60,10 @@ npm run dev
 
 1. Conecte seu repositório GitHub à Vercel
 2. Configure as variáveis de ambiente na Vercel:
-   - `VITE_CONVEX_URL`: URL do seu deployment Convex
+   - `VITE_CONVEX_URL`: https://valuable-cow-676.convex.cloud
 3. Deploy automático será feito a cada push
+
+**Importante**: Certifique-se de que a variável `VITE_CONVEX_URL` está configurada corretamente no Vercel para que a aplicação funcione em produção.
 
 ### 5. Deploy do Backend
 
